@@ -2,7 +2,9 @@
 import React from 'react';
 
 // @components
-import GnomoList from './container/gnomosList';
+import GnomoList from './containers/gnomosList';
+
+import './index.scss';
 
 function App() {
   return <GnomoList />;

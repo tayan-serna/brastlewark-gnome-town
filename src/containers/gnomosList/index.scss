@@ -1,0 +1,71 @@
+@import '../../assets/variables';
+
+.gnomo-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+
+  .gnomo-title {
+
+  }
+
+  .gnomo-loading {
+
+  }
+
+  .gnomo-error {
+
+  }
+
+  .gnomo-filter {
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .gnomo-list {
+    padding: $space-separation-huge;
+
+    &__card {
+      margin-bottom: $space-separation;
+    }
+
+    &__info {
+      align-items: center;
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    &__first-column, &__second-column {
+      text-align: left;
+    }
+
+    &__title {
+
+    }
+
+    &__name {
+
+    }
+
+    &__friend {
+
+    }
+
+    &__hair {
+
+    }
+
+    &__profession {
+
+    }
+
+    &__weight {
+
+    }
+
+    &__image {
+      align-self: center;
+      width: 200px;
+    }
+  }
+}
