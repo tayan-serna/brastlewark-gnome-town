@@ -4,6 +4,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
+  height: 100vh;
+  overflow: hidden;
 
   .gnomo-title {
 
@@ -23,6 +25,10 @@
   }
 
   .gnomo-list {
+    display: flex;
+    flex-direction: column;
+    height: 500px;
+    overflow-y: scroll;
     padding: $space-separation-huge;
 
     &__card {

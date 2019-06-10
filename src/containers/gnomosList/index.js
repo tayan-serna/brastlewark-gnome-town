@@ -4,12 +4,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {
   CircularProgress,
-  Card,
-  CardTitle,
-  CardText,
   TextField
 } from 'react-md';
 import PropTypes from 'prop-types';
+import VisibilitySensor from 'react-visibility-sensor';
+
+// @components
+import GnomoVisibilitySensor from '../../components/gnomoVisibilitySensor';
+import Gnomo from '../../components/gnomo';
 
 // @actions
 import { getGnomos } from '../../actions/gnomos';
@@ -17,9 +19,10 @@ import { getGnomos } from '../../actions/gnomos';
 // @styles
 import './index.scss';
 
-class GnomoList extends Component {
+export class GnomoList extends Component {
   state = {
-    filterVal: ''
+    filterVal: '',
+    gnomosList: this.props.gnomos.data
   };
 
   componentDidMount() {
@@ -29,15 +32,29 @@ class GnomoList extends Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { gnomos } = this.props;
+    if (JSON.stringify(prevProps.gnomos.data) !== JSON.stringify(gnomos.data)) {
+      this.setState({
+        gnomosList: this.props.gnomos.data
+      });
+    }
+  }
+
   handleChange = (val) => {
+    const filteredGnomes = this.props.gnomos.data.filter(
+      gnomo => gnomo.name.toLowerCase().includes(val.toLowerCase())
+    );
+
     this.setState({
-      filterVal: val
+      filterVal: val,
+      gnomosList: !val ? this.props.gnomos.data : filteredGnomes
     });
   }
 
   render() {
     const { gnomos } = this.props;
-    const { filterVal } = this.state;
+    const { filterVal, gnomosList } = this.state;
 
     return (
       <section className="gnomo-container">
@@ -49,7 +66,9 @@ class GnomoList extends Component {
           value={filterVal}
           placeholder="Search for a Gnomo"
         />
-        <div>
+        <div
+          className="gnomo-list"
+        >
           {
             gnomos.loading
             && <CircularProgress
@@ -66,97 +85,14 @@ class GnomoList extends Component {
               !gnomos.loading
               && !gnomos.error
               && gnomos.data.length
-            ) && (
-              <div
-                className="gnomo-list"
-              >
-                {
-                  gnomos.data.map(gnomo => (
-                    <Card
-                      className="gnomo-list__card"
-                      key={gnomo.id}
-                    >
-                      <CardTitle
-                        className="gnomo-list__title"
-                        title={gnomo.name}
+            ) && gnomosList.map(gnomo => {
+              return (
+                      <Gnomo
+                        gnomo={gnomo}
+                        key={gnomo.id}
                       />
-                      <CardText
-                        className="gnomo-list__info"
-                      >
-                        <img
-                          alt={`${gnomo.name}`}
-                          className="gnomo-list__image"
-                          src={gnomo.thumbnail}
-                        />
-                        <div
-                          className="gnomo-list__first-column"
-                        >
-                          <div
-                            className="gnomo-list__name"
-                          >
-                            <strong>Age: </strong> {gnomo.age}
-                          </div>
-                          <div
-                            className="gnomo-list__hair"
-                          >
-                            <strong>Hair: </strong>
-                            {gnomo.hair_color}
-                          </div>
-                          <div
-                            className="gnomo-list__weight"
-                          >
-                            <strong>Weight: </strong>
-                            {gnomo.weight}
-                          </div>
-                          <div
-                            className="gnomo-list__height"
-                          >
-                            <strong>Height: </strong>
-                            {gnomo.height}
-                          </div>
-                        </div>
-                        <div
-                          className="gnomo-list__second-column"
-                        >
-                          {
-                            !!gnomo.friends.length && (
-                              <div
-                                className="gnomo-list__friend"
-                              >
-                                <strong>Friends: </strong>
-                                <ul>
-                                  {
-                                    gnomo.friends.map((friend, key) => (
-                                      <li key={key}>{friend}</li>
-                                    ))
-                                  }
-                                </ul>
-                              </div>
-                            )
-                          }
-                          {
-                            !!gnomo.professions.length && (
-                              <div
-                                className="gnomo-list__profession"
-                              >
-                                <strong>Professions: </strong>
-                                <ul>
-                                  {
-                                    gnomo.professions.map((profession, key) => (
-                                      <li key={key}>{profession}</li>
-                                    ))
-                                  }
-                                </ul>
-                              </div>
-                            )
-                          }
-                        </div>
-                      </CardText>
-                    </Card>
-                  ))
-                }
-              </div>
-            )
+                )
+            })
           }
         </div>
       </section>

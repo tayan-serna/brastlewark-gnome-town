@@ -1,14 +1,12 @@
-// @vendors
-import axios from 'axios';
+import axios from '../axios';
 
 // @contants
 import {
   GET_GNOMOS_REQUEST,
   GET_GNOMOS_SUCCESS,
-  GET_GNOMOS_FAILURE
+  GET_GNOMOS_FAILURE,
+  gnomosUrl
 } from '../constants';
-
-import { gnomosUrl } from '../constants';
 
 export const getGnomos = () => dispatch => {
   dispatch({

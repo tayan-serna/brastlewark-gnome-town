@@ -5,7 +5,7 @@ import {
   GET_GNOMOS_FAILURE
 } from '../constants';
 
-const initialState = {
+export const initialState = {
   data: [],
   error: false,
   loading: false
@@ -23,7 +23,7 @@ function gnomosReducer (state=initialState, action) {
     case GET_GNOMOS_SUCCESS:
       return {
         ...state,
-        data: action.payload,
+        data: action.payload.filter((_, idx) => idx < 100),
         loading: false,
         error: false
       };
