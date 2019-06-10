@@ -37,6 +37,12 @@ class Gnomo extends Component {
               <strong>Age: </strong> {gnomo.age}
             </div>
             <div
+              className="gnomo-list__name"
+            >
+              <strong>Gender: </strong>
+              {Math.floor((Math.random() * 2) + 1) === 1 ? 'Male' : 'Female'}
+            </div>
+            <div
               className="gnomo-list__hair"
             >
               <strong>Hair: </strong>

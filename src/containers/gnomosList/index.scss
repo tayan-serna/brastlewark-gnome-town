@@ -7,14 +7,6 @@
   height: 100vh;
   overflow: hidden;
 
-  .gnomo-title {
-
-  }
-
-  .gnomo-loading {
-
-  }
-
   .gnomo-error {
     color: $color-red;
     font-size: $space-separation-big;
@@ -60,30 +52,6 @@
       @media (min-width: $tablet-min-width) {
         margin: 0;
       }
-    }
-
-    &__title {
-
-    }
-
-    &__name {
-
-    }
-
-    &__friend {
-
-    }
-
-    &__hair {
-
-    }
-
-    &__profession {
-
-    }
-
-    &__weight {
-
     }
 
     &__image {
