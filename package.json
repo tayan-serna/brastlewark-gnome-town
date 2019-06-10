@@ -11,11 +11,9 @@
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-in-viewport": "^1.0.0-alpha.5",
     "react-md": "^1.12.1",
     "react-redux": "^7.0.3",
     "react-scripts": "3.0.1",
-    "react-visibility-sensor": "^5.0.2",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0"

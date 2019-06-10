@@ -7,10 +7,8 @@ import {
   TextField
 } from 'react-md';
 import PropTypes from 'prop-types';
-import VisibilitySensor from 'react-visibility-sensor';
 
 // @components
-import GnomoVisibilitySensor from '../../components/gnomoVisibilitySensor';
 import Gnomo from '../../components/gnomo';
 
 // @actions
@@ -52,9 +50,24 @@ export class GnomoList extends Component {
     });
   }
 
+  renderGnomoList = () => {
+    const { gnomos } = this.props;
+    const { gnomosList } = this.state;
+    if (gnomos.loading || gnomos.error || !gnomos.data.length) {
+      return null;
+    }
+
+    return gnomosList.map(gnomo => (
+      <Gnomo
+        gnomo={gnomo}
+        key={gnomo.id}
+      />
+    ))
+  }
+
   render() {
     const { gnomos } = this.props;
-    const { filterVal, gnomosList } = this.state;
+    const { filterVal } = this.state;
 
     return (
       <section className="gnomo-container">
@@ -68,6 +81,7 @@ export class GnomoList extends Component {
         />
         <div
           className="gnomo-list"
+          id="gnomo-list"
         >
           {
             gnomos.loading
@@ -81,19 +95,9 @@ export class GnomoList extends Component {
             && <div className="gnomo-error">There was an error, please try again</div>
           }
           {
-            (
-              !gnomos.loading
-              && !gnomos.error
-              && gnomos.data.length
-            ) && gnomosList.map(gnomo => {
-              return (
-                      <Gnomo
-                        gnomo={gnomo}
-                        key={gnomo.id}
-                      />
-                )
-            })
+            this.renderGnomoList()
           }
+
         </div>
       </section>
     );

@@ -6,7 +6,6 @@ import {
   CardText
 } from 'react-md';
 import PropTypes from 'prop-types';
-import handleViewport from 'react-in-viewport';
 
 class Gnomo extends Component {
   render() {

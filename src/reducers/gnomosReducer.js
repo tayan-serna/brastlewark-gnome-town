@@ -23,7 +23,7 @@ function gnomosReducer (state=initialState, action) {
     case GET_GNOMOS_SUCCESS:
       return {
         ...state,
-        data: action.payload.filter((_, idx) => idx < 100),
+        data: action.payload,
         loading: false,
         error: false
       };
