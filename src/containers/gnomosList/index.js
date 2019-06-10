@@ -78,7 +78,7 @@ export class GnomoList extends Component {
           }
           {
             gnomos.error
-            && <div className="gnomo-error">There was an error</div>
+            && <div className="gnomo-error">There was an error, please try again</div>
           }
           {
             (

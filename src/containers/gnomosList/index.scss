@@ -16,7 +16,8 @@
   }
 
   .gnomo-error {
-
+    color: $color-red;
+    font-size: $space-separation-big;
   }
 
   .gnomo-filter {
@@ -39,10 +40,26 @@
       align-items: center;
       display: flex;
       justify-content: space-evenly;
+
+      @media (min-width: $mobile-min-width) {
+        flex-direction: column;
+      }
+
+      @media (min-width: $tablet-min-width) {
+        flex-direction: row;
+      }
     }
 
     &__first-column, &__second-column {
       text-align: left;
+
+      @media (min-width: $mobile-min-width) {
+        margin: $space-separation;
+      }
+
+      @media (min-width: $tablet-min-width) {
+        margin: 0;
+      }
     }
 
     &__title {
@@ -72,6 +89,10 @@
     &__image {
       align-self: center;
       width: 200px;
+
+      @media (min-width: $mobile-min-width) {
+        width: 150px;
+      }
     }
   }
 }
